@@ -16,22 +16,22 @@
 2       把增广路径加入到最大匹配中去
 
 伪代码
-<1  假设我们为N个A，匹配M个B，那么>
-<2  for i:=1 to n do>
-<3      fillchar(p,sizeof(p),0);>
-<4      if can(i) then inc(ans) 可以匹配就加入答案>
+1  假设我们为N个A，匹配M个B，那么
+2  for i:=1 to n do
+3      fillchar(p,sizeof(p),0);
+4      if can(i) then inc(ans) 可以匹配就加入答案
 
-<5  匹配过程 (can(i)):>
-<6  if p[i] then exit(false) 如果p[i]已经赶过别人了，就不能再被赶了，不然会死循环>
-<7  p[i]:=true;>
-<8  for j:=1 to m do 从头 开始找一个B来匹配>
-<9  if (b[j]=0) or (can(b[j])) then>
-<10 若B中j这个位置为空，或者可以赶走别人，就占有这里>
-<11    begin>
-<12        b[j]=i;>
-<13       exit(true);匹配成功>
-<14    end;>
-<15 exit(false);匹配失效>
+5  匹配过程 (can(i)):
+6  if p[i] then exit(false) 如果p[i]已经赶过别人了，就不能再被赶了，不然会死循环
+7  p[i]:=true;
+8  for j:=1 to m do 从头 开始找一个B来匹配
+9  if (b[j]=0) or (can(b[j])) then
+10 若B中j这个位置为空，或者可以赶走别人，就占有这里
+11    begin
+12        b[j]=i;
+13       exit(true);匹配成功
+14    end;
+15 exit(false);匹配失效
 
 
 4.接口
