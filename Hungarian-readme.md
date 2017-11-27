@@ -53,32 +53,5 @@ record.set("/xylist",Field.create(xylist));
 
 使用匈牙利方法可以找到开销最小的方案，即A负责扫地，B负责擦窗户，C负责清理浴室，总开销为360元。
 
-6.code
-var
-   n,m,i,j,ans:longint;
-   a:array[1..200,0..200]of longint;
-   b:array[1..200]of longint;
-   flag:array[1..200]of longint;
-function can(x:longint):boolean;
-var
-   ii:longint;
-begin
-   if flag[x]=i then exit(false);
-   flag[x]:=i;
-   for ii:=1 to a[x,0] do
-      if (b[a[x,ii]]=0)or (can(b[a[x,ii]]))then begin
-         b[a[x,ii]]:=x;
-         exit(true);
-      end;
-   exit(false);
-end;
-begin
-   readln(n,m);
-   for i:=1 to n do begin
-      read(a[i,0]);
-      for j:=1 to a[i,0]do read(a[i,j]);
-   end;
-   for i:=1 to n do
-      if can(i)then inc(ans);
-   writeln(ans);
-End.
+
+
