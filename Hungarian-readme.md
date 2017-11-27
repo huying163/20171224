@@ -13,7 +13,26 @@
 3.核心思想：增广路径(augment path)
 基本模式：初始时最大匹配为空
 1 while 找到增广路径 do
-2       把增广路径加入到最大匹配中去
+2       把增广路径加入到最大匹配中去
+
+伪代码
+1  假设我们为N个A，匹配M个B，那么
+2  for i:=1 to n do
+3      fillchar(p,sizeof(p),0);
+4      if can(i) then inc(ans) 可以匹配就加入答案
+
+5  匹配过程 (can(i)):
+6  if p[i] then exit(false) 如果p[i]已经赶过别人了，就不能再被赶了，不然会死循环
+7  p[i]:=true;
+8  for j:=1 to m do 从头 开始找一个B来匹配
+9  if (b[j]=0) or (can(b[j])) then
+10 若B中j这个位置为空，或者可以赶走别人，就占有这里
+11    begin
+12        b[j]=i;
+13       exit(true);匹配成功
+14    end;
+15exit(false);匹配失效
+
 
 4.接口
 Input:
@@ -33,3 +52,33 @@ record.set("/xylist",Field.create(xylist));
 |     C     |     300元   |   300元     |   120元       |
 
 使用匈牙利方法可以找到开销最小的方案，即A负责扫地，B负责擦窗户，C负责清理浴室，总开销为360元。
+
+6.code
+var
+   n,m,i,j,ans:longint;
+   a:array[1..200,0..200]of longint;
+   b:array[1..200]of longint;
+   flag:array[1..200]of longint;
+function can(x:longint):boolean;
+var
+   ii:longint;
+begin
+   if flag[x]=i then exit(false);
+   flag[x]:=i;
+   for ii:=1 to a[x,0] do
+      if (b[a[x,ii]]=0)or (can(b[a[x,ii]]))then begin
+         b[a[x,ii]]:=x;
+         exit(true);
+      end;
+   exit(false);
+end;
+begin
+   readln(n,m);
+   for i:=1 to n do begin
+      read(a[i,0]);
+      for j:=1 to a[i,0]do read(a[i,j]);
+   end;
+   for i:=1 to n do
+      if can(i)then inc(ans);
+   writeln(ans);
+End.
