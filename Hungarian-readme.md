@@ -3,16 +3,11 @@
 应用场景：可以找到开销最小的方案
 
 2.匈牙利算法简要步骤：
-
-     step-1:对开销矩阵的各行进行操作：找出每一行中值最小的元素，然后把该行所有元素都减去这一最小值  
-  
-     step-2:对开销矩阵的各列进行操作：找出每一列值最小的元素，然后把该列所有元素都减去这这一最小值
-  
-     step-3:用尽量少的横线或竖线覆盖矩阵中的所有0
-  
-     step-4:从上一步中未被覆盖的元素中找到最小值，然后把这些元素都减去这一小值，给直线交叉点的元素加上这一最小值
-  
-     step-5:重复step-3和step-4，直到所有任务都被分配
+  step-1:对开销矩阵的各行进行操作：找出每一行中值最小的元素，然后把该行所有元素都减去这一最小值  
+  step-2:对开销矩阵的各列进行操作：找出每一列值最小的元素，然后把该列所有元素都减去这这一最小值
+  step-3:用尽量少的横线或竖线覆盖矩阵中的所有0
+  step-4:从上一步中未被覆盖的元素中找到最小值，然后把这些元素都减去这一小值，给直线交叉点的元素加上这一最小值
+  step-5:重复step-3和step-4，直到所有任务都被分配
 
 
 3.核心思想：增广路径(augment path)
@@ -21,47 +16,30 @@
 2       把增广路径加入到最大匹配中去
 
 伪代码
+1  假设我们为N个A，匹配M个B，那么   \r\n
+2  for i:=1 to n do
+3      fillchar(p,sizeof(p),0);
+4      if can(i) then inc(ans) 可以匹配就加入答案
 
-       1  假设我们为N个A，匹配M个B，那么   
-  
-       2  for i:=1 to n do
-
-       3      fillchar(p,sizeof(p),0);
-
-       4      if can(i) then inc(ans) 可以匹配就加入答案
-
-       5  匹配过程 (can(i)):
-
-       6  if p[i] then exit(false) 如果p[i]已经赶过别人了，就不能再被赶了，不然会死循环
-
-       7  p[i]:=true;
-
-       8  for j:=1 to m do 从头 开始找一个B来匹配
-
-       9  if (b[j]=0) or (can(b[j])) then
-
-       10 若B中j这个位置为空，或者可以赶走别人，就占有这里
-
-       11    begin
-
-       12        b[j]=i;
-
-       13       exit(true);匹配成功
-
-       14    end;
-
-      15 exit(false);匹配失效
+5  匹配过程 (can(i)):
+6  if p[i] then exit(false) 如果p[i]已经赶过别人了，就不能再被赶了，不然会死循环
+7  p[i]:=true;
+8  for j:=1 to m do 从头 开始找一个B来匹配
+9  if (b[j]=0) or (can(b[j])) then
+10 若B中j这个位置为空，或者可以赶走别人，就占有这里
+11    begin
+12        b[j]=i;
+13       exit(true);匹配成功
+14    end;
+15 exit(false);匹配失效
 
 
 4.接口
 Input:
-
 List<Field> match_List = record.get("/match_array").getValueAsList();
 
 Output:
-
 record.set("/sum_value", Field.create(ret));
-
 record.set("/xylist",Field.create(xylist));
 
 5.举例
