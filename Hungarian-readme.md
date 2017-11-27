@@ -16,7 +16,7 @@
 2       把增广路径加入到最大匹配中去
 
 伪代码
-1  假设我们为N个A，匹配M个B，那么
+1  假设我们为N个A，匹配M个B，那么   \r\n
 2  for i:=1 to n do
 3      fillchar(p,sizeof(p),0);
 4      if can(i) then inc(ans) 可以匹配就加入答案
