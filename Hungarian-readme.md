@@ -22,3 +22,13 @@ List<Field> match_List = record.get("/match_array").getValueAsList();
 Output:
 record.set("/sum_value", Field.create(ret));
 record.set("/xylist",Field.create(xylist));
+
+5.举例
+假设有三位工人A，B和C，需要分配他们每人完成一件工作；对于不同的工作他们索要不同的工钱，如下表所示。问题就是要找到一套开销最小的指派方案。
+
+|Tables     | 扫地         | 擦窗户      |    清理浴室    |
+|-----------|:-----------:|:----------:|--------------:|
+|     A     |     120元   |   300元     |   300元       |
+|     B     |     300元   |   120元     |   300元       |
+|     C     |     300元   |   300元     |   120元       |
+使用
